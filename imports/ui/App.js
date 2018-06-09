@@ -8,7 +8,7 @@ import Task from './Task.js'
 
 class App extends Component {
 
-    handleSubmit(event){
+    handleSubmit = (event) => {
         event.preventDefault()
 
         const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim()
@@ -19,14 +19,6 @@ class App extends Component {
         })
 
         ReactDOM.findDOMNode(this.refs.textInput).value = ''
-    }
-
-    getTasks(){
-        return [
-            { _id: 1, text: 'This is task 1'},
-            { _id: 2, text: 'This is task 2'},
-            { _id: 3, text: 'This is task 3'},
-        ]
     }
 
     renderTasks = () => {
@@ -40,7 +32,7 @@ class App extends Component {
             <div className="container">
                 <header>
                     <h1>Todo List</h1>
-                    <form className="new-task" onSubmit={this.handleSubmit.bind(this)}>
+                    <form className="new-task" onSubmit={this.handleSubmit}>
                     <input
                         type="text"
                         ref="textInput"
