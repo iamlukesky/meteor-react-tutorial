@@ -16,7 +16,10 @@ export default class Task extends Component {
 
     render() {
 
-        const taskClassName = this.props.task.checked ? 'checked' : ''
+        const { task } = this.props
+        const taskClassName = task.checked ? 'checked' : ''
+
+        const {username, checked } = task
 
         return (
             <li className={taskClassName}>
@@ -31,7 +34,9 @@ export default class Task extends Component {
                     onClick={this.toggleChecked}
                 />
 
-                <span className="text">{this.props.task.text}</span>
+                <span className="text">
+                    <strong>{username && `${username}: `}</strong>{this.props.task.text}
+                </span>
             </li>
         )
     }
