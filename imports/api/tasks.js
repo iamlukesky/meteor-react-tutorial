@@ -21,12 +21,17 @@ Meteor.methods({
     },
     'tasks.remove'(taskId) {
         check(taskId, String)
+        if (! this.userId) {
+            throw new Meteor.Error('not-authorized')
+        }
         Tasks.remove(taskId)
     },
     'tasks.setChecked'(taskId, setChecked) {
         check(taskId, String)
         check(setChecked, Boolean)
-
+        if (! this.userId) {
+            throw new Meteor.Error('not-authorized')
+        }
         Tasks.update(taskId, { $set: { checked: setChecked }})
     }
 })
